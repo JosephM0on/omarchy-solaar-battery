@@ -170,3 +170,51 @@ function anyLow(devices) {
   }
   return false
 }
+
+function isCharging(device) {
+  var s = String((device && device.status) || "").toUpperCase()
+  return s === "RECHARGING" || s === "CHARGING"
+}
+
+function lowestDevice(devices) {
+  var list = Array.isArray(devices) ? devices : []
+  if (list.length === 0) return null
+  var lowest = list[0]
+  for (var i = 1; i < list.length; i++) {
+    if (displayPercent(list[i]) < displayPercent(lowest)) lowest = list[i]
+  }
+  return lowest
+}
+
+function anyCharging(devices) {
+  var list = Array.isArray(devices) ? devices : []
+  for (var i = 0; i < list.length; i++) {
+    if (isCharging(list[i])) return true
+  }
+  return false
+}
+
+function batteryIcon(percent, charging) {
+  var chargingIcons = ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+  var defaultIcons = ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+  var index = Math.max(0, Math.min(9, Math.floor(Number(percent) / 10)))
+  return charging ? chargingIcons[index] : defaultIcons[index]
+}
+
+function barBatteryIcon(devices) {
+  var lowest = lowestDevice(devices)
+  if (!lowest) return "󰁹"
+  return batteryIcon(displayPercent(lowest), anyCharging(devices))
+}
+
+function kindLabel(kind) {
+  if (kind === "keyboard") return "Keyboard"
+  if (kind === "mouse") return "Mouse"
+  if (kind === "headset") return "Headset"
+  return "Device"
+}
+
+function statusLabel(status) {
+  var s = String(status || "").toLowerCase().replace(/_/g, " ")
+  return s
+}

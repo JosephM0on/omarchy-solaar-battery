@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "josephm0on.solaar-battery",
+  "id": "solaar.battery",
   "name": "Logitech Battery",
-  "version": "1.0.0",
-  "author": "JosephM0on",
+  "version": "1.0.1",
+  "author": "Solaar",
   "license": "MIT",
   "description": "Battery levels for Logitech peripherals via Solaar (keyboard, mouse, headset)",
   "kinds": [

@@ -21,14 +21,17 @@ omarchy plugin add https://github.com/JosephM0on/omarchy-solaar-battery.git --en
 The widget lands on the right side of the bar. Move it with:
 
 ```bash
-omarchy bar move josephm0on.solaar-battery --before omarchy.power
+omarchy bar move solaar.battery --before omarchy.power
 ```
 
 ## Use
 
-- Left click: refresh now
+The bar shows a single battery icon (level of the lowest device). Click it
+for the popup, same pattern as Audio / Network.
+
+- Left click: open the device list (name + %)
 - Right click: open Solaar
-- Hover: name, percent, voltage, status
+- Middle click: refresh now
 - Low battery (≤20% and not charging) uses the bar’s urgent color
 
 Refresh interval defaults to 60 seconds (`refreshIntervalSec` in `shell.json`).
